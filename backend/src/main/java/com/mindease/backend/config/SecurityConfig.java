@@ -36,8 +36,11 @@ public class SecurityConfig {
                                 "/",
                                 "/error",
                                 "/api/health",
-                                "/api/auth/register",
-                                "/api/auth/login")
+                                "/api/auth/**",
+                                "/api/admin/**",
+                                "/api/listener/**",
+                                "/api/listeners/**",
+                                "/api/requests/**")
                         .permitAll()
                         .anyRequest().authenticated());
 

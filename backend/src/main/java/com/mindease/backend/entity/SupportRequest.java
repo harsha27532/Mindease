@@ -22,6 +22,9 @@ public class SupportRequest {
     @Column(columnDefinition = "TEXT")
     private String message;
 
+    @Column(name = "response_message", columnDefinition = "TEXT")
+    private String responseMessage;
+
     @Column(length = 100)
     private String topic = "General Support";
 
@@ -77,6 +80,14 @@ public class SupportRequest {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getResponseMessage() {
+        return responseMessage;
+    }
+
+    public void setResponseMessage(String responseMessage) {
+        this.responseMessage = responseMessage;
     }
 
     public String getTopic() {

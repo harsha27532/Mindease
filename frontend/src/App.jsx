@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./App.css";
+import AdminDashboard from "./components/AdminDashboard.jsx";
+import PeerListenerDashboard from "./components/PeerListenerDashboard.jsx";
 
 const API_URL = "http://localhost:8080/api/auth";
 
@@ -532,7 +534,7 @@ function App() {
               <strong>{role?.title || selectedRole}</strong>
             </div>
 
-            {selectedRole === "ADMIN" && (
+            {isRegistering && selectedRole === "ADMIN" && (
               <div className="login-error" role="alert">
                 Admin accounts cannot be created through public signup.
                 Use an existing administrator account to sign in.
@@ -600,7 +602,7 @@ function App() {
               <button
                 type="submit"
                 className="btn-primary login-submit"
-                disabled={loading || selectedRole === "ADMIN"}
+                disabled={loading || (isRegistering && selectedRole === "ADMIN")}
               >
                 {loading
                   ? "Please wait..."
@@ -631,7 +633,16 @@ function App() {
     );
   }
 
-  // MAIN DASHBOARD
+  // ROLE-BASED DASHBOARD ROUTING
+  if (user?.role === "ADMIN") {
+    return <AdminDashboard user={user} onLogout={handleLogout} />;
+  }
+
+  if (user?.role === "LISTENER") {
+    return <PeerListenerDashboard user={user} onLogout={handleLogout} />;
+  }
+
+  // STUDENT DASHBOARD (100% UNTOUCHED ORIGINAL DESIGN AND BEHAVIOR)
   return (
     <div className="app-container">
       <header className="navbar">

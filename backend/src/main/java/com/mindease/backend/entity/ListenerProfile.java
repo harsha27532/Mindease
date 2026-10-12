@@ -30,6 +30,12 @@ public class ListenerProfile {
     @Column(nullable = false)
     private boolean available = true;
 
+    @Column(name = "approval_status", length = 20)
+    private String approvalStatus = "APPROVED";
+
+    @Column(name = "rejection_reason", length = 255)
+    private String rejectionReason;
+
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
@@ -99,6 +105,22 @@ public class ListenerProfile {
 
     public void setAvailable(boolean available) {
         this.available = available;
+    }
+
+    public String getApprovalStatus() {
+        return approvalStatus;
+    }
+
+    public void setApprovalStatus(String approvalStatus) {
+        this.approvalStatus = approvalStatus;
+    }
+
+    public String getRejectionReason() {
+        return rejectionReason;
+    }
+
+    public void setRejectionReason(String rejectionReason) {
+        this.rejectionReason = rejectionReason;
     }
 
     public LocalDateTime getCreatedAt() {
